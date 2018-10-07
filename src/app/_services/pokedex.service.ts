@@ -28,7 +28,10 @@ export class PokedexService {
   }
 
   getSpecificPokedex(id: number): Pokedex {
-    return this.pokedexes[id-1];
+    const pokedex: Pokedex[] = this.pokedexes.filter(
+      data => data.id === id
+    );
+    return pokedex[0];
   }
 
 }

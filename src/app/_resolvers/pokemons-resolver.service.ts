@@ -16,7 +16,8 @@ export class PokemonsResolver implements Resolve<any> {
     if (pokedexes.length == 0) {
       this.router.navigate(['home']);
     } else {
-      return this._pokedexService.getSpecificPokedex(id);
+      const pokedex: Pokedex = this._pokedexService.getSpecificPokedex(id);
+      return pokedex;
     }
   }
 }
