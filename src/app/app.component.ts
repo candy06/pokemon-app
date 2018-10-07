@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'pokemon-app';
+
+  private title = 'Pokemon application';
+  private developper = 'Loïc Rose';
+  
 }

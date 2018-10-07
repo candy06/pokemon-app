@@ -1,0 +1,19 @@
+<mat-card *ngIf="pokedex !== undefined" (click)="selectPokedex()" style="cursor: pointer">
+  <mat-card-header>
+    <mat-card-title>
+      <h2>{{ pokedex.name }}</h2>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <em>{{ pokedex.description | description }}</em>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="pokedex.imageUrl" alt="Region image">
+  <mat-card-footer>
+    <div style="display:inline-block">
+        <mat-chip-list class="stats">
+          <mat-chip *ngFor="let version of pokedex.versions" color="accent" selected>{{ version | capitalizeFirst }}</mat-chip>
+          <mat-chip color="primary" selected>{{ pokedex.speciesUrls.length + ' Pokemons' }}</mat-chip>
+        </mat-chip-list>
+    </div>
+  </mat-card-footer>
+</mat-card>

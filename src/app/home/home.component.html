@@ -1,0 +1,7 @@
+<div>
+    <mat-grid-list [cols]="cols" rowHeight="1:1" gutterSize="5px">
+            <mat-grid-tile *ngFor="let pokedex of pokedexes">
+                <app-pokedex [pokedex]="pokedex" ></app-pokedex>
+            </mat-grid-tile>
+    </mat-grid-list>
+</div>
