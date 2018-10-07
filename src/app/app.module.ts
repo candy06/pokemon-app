@@ -21,6 +21,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { DescriptionPipe } from './_pipes/description.pipe';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PokemonsComponent } from './pokemons/pokemons.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { PokemonsComponent } from './pokemons/pokemons.component';
     MatGridListModule,
     MatChipsModule,
     MatTooltipModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MatListModule
   ],
   providers: [PokedexService],
   bootstrap: [AppComponent]

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Pokedex } from '../_models/pokedex';
 import { HttpClient } from '@angular/common/http';
+import { Pokemon } from '../_models/pokemon';
+import { Name } from '../_models/name';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +48,30 @@ export class CommonService {
       })
     });
     return new Pokedex(id, name, description, speciesUrls, versions);
+  }
+
+  converObjectToPokemon(obj: Object): Pokemon {
+    const result: any = <any> obj;
+    // Extract id
+    const id: number = result.id;
+    // Extract names
+    const names: Array<Name> = [];
+    result.names.forEach(data => {
+      const name: Name = new Name(data.language.name, data.name);
+      names.push(name);
+    });
+
+    let pokemon: Pokemon = new Pokemon(id, names);
+
+    // Extract sprite
+    const pokemonVarietyUrl = result.varieties[0].pokemon.url;
+    this._http.get(pokemonVarietyUrl).subscribe(res => {
+      const r: any = <any> res;
+      const url: string = r.sprites.front_default;
+      pokemon.setImageUrl(url);
+    });
+    
+    return pokemon;
   }
 
 }
