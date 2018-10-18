@@ -5,6 +5,7 @@ import { HomeComponent } from '../home/home.component';
 import { PokemonsComponent } from '../pokemons/pokemons.component';
 import { PokemonsResolver } from '../_resolvers/pokemons-resolver.service';
 import { PokedexResolver } from '../_resolvers/pokedex-resolver.service';
+import { SpiderChartComponent } from '../spider-chart/spider-chart.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,11 @@ const routes: Routes = [
     resolve: {
       pokedex: PokemonsResolver
     }
+  },
+  {
+    path: 'chart',
+    component: SpiderChartComponent,
+    pathMatch: 'full'
   }
 ];
 

@@ -1,19 +1,39 @@
 import { Name } from "./name";
+import { PokemonStatistic } from "./pokemon-statistic";
+import { PokemonType } from "./pokemon-type";
 
 export class Pokemon {
 
-    private id: number;
-    private names: Array<Name>;
-    private imgUrl: string;
+    public id: number;
+    public order: number;
+    public names: Array<Name>;
+    public imgUrl: string;
+    public stats: Array<PokemonStatistic>;
+    public types: Array<PokemonType>;
 
-    constructor(id: number, names: Array<Name>, imgUrl?: string) { 
+    constructor(id: number, order: number, names: Array<Name>, types?: Array<PokemonType>, stats?: Array<PokemonStatistic>, imgUrl?: string) { 
         this.id = id;
+        this.order = order;
         this.names = names;
+        this.stats = stats;
         this.imgUrl = imgUrl;
+        this.types = types;
     } 
 
-    setImageUrl(url: string) {
+    setStatistics(stats: Array<PokemonStatistic>): void {
+        this.stats = stats;
+    }
+
+    setImageUrl(url: string): void {
         this.imgUrl = url;
+    }
+
+    setTypes(types: Array<PokemonType>): void {
+        this.types = types;
+    }
+
+    getTypes(): Array<PokemonType> {
+        return this.types;
     }
 
     getName(lang: string): string {

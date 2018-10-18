@@ -2,46 +2,66 @@
   <p class="lead" *ngIf="loading">Loading...</p>
 </div>
 
-<div *ngIf="!loading" class="pokemonsTableContainer"> 
-  <table mat-table [dataSource]="pokemons" class="mat-elevation-z8">
+<div *ngIf="!loading" class="pokemonsTableContainer mat-elevation-z8" (window:resize)="onResize($event)">
+  <table mat-table [dataSource]="pokemons">
 
-  <!-- id -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-  </ng-container>
+    <!-- id -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
 
-  <!-- img -->
-  <ng-container matColumnDef="pokemon">
-    <th mat-header-cell *matHeaderCellDef> Pokemon </th>
-    <td mat-cell *matCellDef="let element"> <img [src]="element.imgUrl" alt="loading..."> </td>
-  </ng-container>
+    <!-- img -->
+    <ng-container matColumnDef="pokemon">
+      <th mat-header-cell *matHeaderCellDef> Pokemon </th>
+      <td mat-cell *matCellDef="let element"> <img [src]="element.imgUrl" alt="loading..."> </td>
+    </ng-container>
 
-  <!-- name (fr) -->
-  <ng-container matColumnDef="name-fr">
-    <th mat-header-cell *matHeaderCellDef> Name (fr) </th>
-    <td mat-cell *matCellDef="let element"> {{element.getName('fr')}} </td>
-  </ng-container>
+    <!-- name (fr) -->
+    <ng-container matColumnDef="name-fr">
+      <th mat-header-cell *matHeaderCellDef> Name (fr) </th>
+      <td mat-cell *matCellDef="let element"> {{element.getName('fr')}} </td>
+    </ng-container>
 
-  <!-- name (en) -->
-  <ng-container matColumnDef="name-en">
-    <th mat-header-cell *matHeaderCellDef> Name (en) </th>
-    <td mat-cell *matCellDef="let element"> {{element.getName('en')}} </td>
-  </ng-container>
+    <!-- name (en) -->
+    <ng-container matColumnDef="name-en">
+      <th mat-header-cell *matHeaderCellDef> Name (en) </th>
+      <td mat-cell *matCellDef="let element"> {{element.getName('en')}} </td>
+    </ng-container>
 
-  <!-- name (de) -->
-  <ng-container matColumnDef="name-de">
-    <th mat-header-cell *matHeaderCellDef> Name (de) </th>
-    <td mat-cell *matCellDef="let element"> {{element.getName('de')}} </td>
-  </ng-container>
+    <!-- name (de) -->
+    <ng-container matColumnDef="name-de">
+      <th mat-header-cell *matHeaderCellDef> Name (de) </th>
+      <td mat-cell *matCellDef="let element"> {{element.getName('de')}} </td>
+    </ng-container>
 
-  <!-- name (ja) -->
-  <ng-container matColumnDef="name-ja">
-    <th mat-header-cell *matHeaderCellDef> Name (ja) </th>
-    <td mat-cell *matCellDef="let element"> {{element.getName('ja') + ' ' + element.getName('roomaji')}} </td>
-  </ng-container>
+    <!-- name (ja) -->
+    <ng-container matColumnDef="name-ja">
+      <th mat-header-cell *matHeaderCellDef> Name (ja) </th>
+      <td mat-cell *matCellDef="let element"> {{element.getName('ja') + ' ' + element.getName('roomaji')}} </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+    <!-- Types -->
+    <ng-container matColumnDef="types">
+      <th mat-header-cell *matHeaderCellDef> Types </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-button-toggle-group name="type" aria-label="type" disabled>
+          <mat-button-toggle *ngFor="let type of element.getTypes()" [value]="type.getName()" [class]="type.getName()">{{type.getName() | capitalizeFirst }}</mat-button-toggle>
+        </mat-button-toggle-group>
+        <!--<span *ngFor="let type of element.getTypes()">{{type.getName()}}</span>-->
+      </td>
+    </ng-container>
+
+    <!-- Stats -->
+    <ng-container matColumnDef="stats" *ngIf="isStatColumnDisplayed">
+      <th mat-header-cell *matHeaderCellDef> Statistics </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary" (click)="openDialog(element.stats, element.getName('en'))">Chart</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+    
+  </table>
 </div>

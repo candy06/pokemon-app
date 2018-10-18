@@ -23,16 +23,23 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PokemonsComponent } from './pokemons/pokemons.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatListModule} from '@angular/material/list';
+import { jqxChartComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxchart';
+import { SpiderChartComponent } from './spider-chart/spider-chart.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatPaginatorModule } from '@angular/material';
 
 @NgModule({
-  declarations: [
+  declarations: [ 
     AppComponent,
     HomeComponent,
     ApplicationHeaderComponent,
     PokedexComponent,
     CapitalizeFirstPipe,
     DescriptionPipe,
-    PokemonsComponent
+    PokemonsComponent,
+    jqxChartComponent,
+    SpiderChartComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +56,13 @@ import {MatListModule} from '@angular/material/list';
     MatTooltipModule,
     MatProgressSpinnerModule,
     MatTableModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule,
+    MatButtonToggleModule,
+    MatPaginatorModule
+  ],
+  entryComponents: [
+    SpiderChartComponent
   ],
   providers: [PokedexService],
   bootstrap: [AppComponent]

@@ -3,6 +3,8 @@ import { Pokedex } from '../_models/pokedex';
 import { HttpClient } from '@angular/common/http';
 import { Pokemon } from '../_models/pokemon';
 import { Name } from '../_models/name';
+import { PokemonStatistic } from '../_models/pokemon-statistic';
+import { PokemonType } from '../_models/pokemon-type';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +56,8 @@ export class CommonService {
     const result: any = <any> obj;
     // Extract id
     const id: number = result.id;
+    // Extract order
+    const order: number = result.order;
     // Extract names
     const names: Array<Name> = [];
     result.names.forEach(data => {
@@ -61,7 +65,7 @@ export class CommonService {
       names.push(name);
     });
 
-    let pokemon: Pokemon = new Pokemon(id, names);
+    let pokemon: Pokemon = new Pokemon(id, order, names);
 
     // Extract sprite
     const pokemonVarietyUrl = result.varieties[0].pokemon.url;
@@ -69,6 +73,16 @@ export class CommonService {
       const r: any = <any> res;
       const url: string = r.sprites.front_default;
       pokemon.setImageUrl(url);
+      const statistics: Array<PokemonStatistic> = [];
+      r.stats.forEach(statistic => {
+        statistics.push(new PokemonStatistic(statistic.stat.name, statistic.base_stat));
+      });
+      pokemon.setStatistics(statistics);
+      const types: Array<PokemonType> = [];
+      r.types.forEach(type => {
+        types.push(new PokemonType(type.type.name, type.slot));
+      });
+      pokemon.setTypes(types);
     });
     
     return pokemon;
