@@ -1,0 +1,52 @@
+<div (window:resize)="onResize($event)">
+  <!-- Organizer view on desktop -->
+  <div *ngIf="userType === 1" fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="10px">
+    <div fxFlex="33%" fxLayout="column" fxLayoutGap="10px">
+      <div fxFlex="50%" style="background-color: green">
+        <h1>Video component here...</h1>
+      </div>
+      <div fxFlex="50%" style="background-color: pink">
+        <h1>Graphs component here...</h1>
+      </div>
+    </div>
+    <div fxFlex="77%" style="background-color: blue">
+      <h1>Pokemons component here...</h1>
+    </div>
+  </div>
+  <!-- End of organizer view -->
+  <div *ngIf="userType === 0">
+
+    <!-- Player view on tablet (ex: iPad) -->
+    <div *ngIf="deviceUsed === 1" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="10px">
+      <div fxFlex="33%" fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex="50%" style="background-color: purple">
+          <h1>Player's team component here...</h1>
+        </div>
+        <div fxFlex="50%" style="background-color: orange">
+          <h1>Detailed infos component here...</h1>
+        </div>
+      </div>
+      <div fxFlex="77%" style="background-color: red">
+        <h1>Pokemons component here...</h1>
+      </div>
+    </div>
+    <!-- End of player view (tablet) -->
+
+    <!-- Player view on smartphone (ex: iPhone X) -->
+    <div *ngIf="deviceUsed === 2" fxLayout="column" fxLayoutAlign="start stretch">
+      <div fxFlex="33%" fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex="35%" style="background-color: purple">
+          <h1>Player's team component here...</h1>
+        </div>
+        <div fxFlex="75%" style="background-color: orange">
+          <h1>Detailed infos component here...</h1>
+        </div>
+      </div>
+      <div fxFlex="77%" style="background-color: red">
+        <h1>Pokemons component here...</h1>
+      </div>
+    </div>
+    <!-- End of player view (smartphone) -->
+
+  </div>
+</div>

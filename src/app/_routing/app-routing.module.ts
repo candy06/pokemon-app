@@ -6,11 +6,12 @@ import { PokemonsComponent } from '../pokemons/pokemons.component';
 import { PokemonsResolver } from '../_resolvers/pokemons-resolver.service';
 import { PokedexResolver } from '../_resolvers/pokedex-resolver.service';
 import { SpiderChartComponent } from '../spider-chart/spider-chart.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/dashboard',
     pathMatch: 'full'
   },
   {
@@ -20,6 +21,11 @@ const routes: Routes = [
     resolve: {
       pokedexes: PokedexResolver
     }
+  }, 
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    pathMatch: 'full'
   },
   {
     path: 'pokemons/:id',

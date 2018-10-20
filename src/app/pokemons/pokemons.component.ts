@@ -15,7 +15,8 @@ import { ObservableMedia } from '@angular/flex-layout';
 })
 export class PokemonsComponent implements OnInit {
 
-  private isStatColumnDisplayed = true;
+  private hasRemovedStats: boolean = false;
+  private hasRemovedTypes: boolean = false;
 
   private pokedex: Pokedex;
   private pokemons: Array<Pokemon>;
@@ -25,8 +26,6 @@ export class PokemonsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'pokemon', 'name-fr', 'name-en', 'name-de', 'name-ja', 'types', 'stats'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   removedColumns: string[] = [];
-
-  hasRemovedStats: boolean = false;
 
   constructor(private route: ActivatedRoute, private _pokemonService: PokemonService, private dialog: MatDialog, private observableMedia: ObservableMedia) { }
 
@@ -49,51 +48,47 @@ export class PokemonsComponent implements OnInit {
 
   onResize(event) {
     const targetSize = event.target.innerWidth;
-    console.log(`Resize of the screen, the new width is ${targetSize}!`);
     this.adjustColumnCount(targetSize);
-    /*if (targetSize < 1200 && !this.hasRemovedStats) {
-      this.isStatColumnDisplayed = false;
-      this.hasRemovedStats = true;
-      const removedItem = this.columnsToDisplay.pop();
-      this.removedColumns.push(removedItem);
-    }
-
-    if (targetSize > 1200 && this.columnsToDisplay.length !== this.displayedColumns.length) {
-      this.hasRemovedStats = false;
-      this.isStatColumnDisplayed = true;
-      this.removedColumns.forEach(col => {
-        this.columnsToDisplay.push(col);
-      });
-    }
-    /*switch(targetSize) {
-      case 1200:
-      console.log('coucou');
-        this.isStatColumnDisplayed = false;
-        const removedItem = this.columnsToDisplay.pop();
-        this.removedColumns.push(removedItem);
-        break;
-      default:
-        break;
-    }*/
   }
 
   adjustColumnCount(screenSize: number): void {
-    if (screenSize < 1200 && !this.hasRemovedStats) {
-      this.isStatColumnDisplayed = false;
-      this.hasRemovedStats = true;
-      const removedItem = this.columnsToDisplay.pop();
-      this.removedColumns.push(removedItem);
-    }
 
-    if (screenSize > 1200 && this.columnsToDisplay.length < this.displayedColumns.length) {
-      //this.removedColumns = [];
-      this.hasRemovedStats = false;
-      this.isStatColumnDisplayed = true;
-      this.removedColumns.forEach(col => {
-        this.columnsToDisplay.push(col);
-      });
-      this.removedColumns = [];
+    if (screenSize < 975 && !this.hasRemovedTypes) this.removeColumn('types');
+    if (screenSize > 975 && this.columnsToDisplay.length < this.displayedColumns.length - 1) this.addColumn('types');
+
+    if (screenSize < 1200 && !this.hasRemovedStats) this.removeColumn('stats');
+    if (screenSize > 1200 && this.columnsToDisplay.length < this.displayedColumns.length) this.addColumn('stats');
+
+  }
+
+  private addColumn(name: string): void {
+    switch (name) {
+      case 'stats':
+        this.hasRemovedStats = false;
+        break;
+      case 'types':
+        this.hasRemovedTypes = false;
+        break;
+      default:
+        break;
     }
+    const addedColumn = this.removedColumns.pop();
+    this.columnsToDisplay.push(addedColumn);
+  }
+
+  private removeColumn(name: string): void {
+    switch(name) {
+      case 'stats':
+        this.hasRemovedStats = true;
+        break;
+      case 'types':
+        this.hasRemovedTypes = true;
+        break;
+      default:
+        break;
+    }
+    const removedColumn = this.columnsToDisplay.pop();
+    this.removedColumns.push(removedColumn);
   }
 
 }

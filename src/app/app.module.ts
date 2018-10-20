@@ -28,6 +28,7 @@ import { SpiderChartComponent } from './spider-chart/spider-chart.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MatPaginatorModule } from '@angular/material';
+import { DashboardComponent } from './dashboard/dashboard.component'; 
 
 @NgModule({
   declarations: [ 
@@ -39,7 +40,8 @@ import { MatPaginatorModule } from '@angular/material';
     DescriptionPipe,
     PokemonsComponent,
     jqxChartComponent,
-    SpiderChartComponent
+    SpiderChartComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

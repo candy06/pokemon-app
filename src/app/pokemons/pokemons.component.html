@@ -48,15 +48,14 @@
         <mat-button-toggle-group name="type" aria-label="type" disabled>
           <mat-button-toggle *ngFor="let type of element.getTypes()" [value]="type.getName()" [class]="type.getName()">{{type.getName() | capitalizeFirst }}</mat-button-toggle>
         </mat-button-toggle-group>
-        <!--<span *ngFor="let type of element.getTypes()">{{type.getName()}}</span>-->
       </td>
     </ng-container>
 
     <!-- Stats -->
-    <ng-container matColumnDef="stats" *ngIf="isStatColumnDisplayed">
+    <ng-container matColumnDef="stats">
       <th mat-header-cell *matHeaderCellDef> Statistics </th>
       <td mat-cell *matCellDef="let element">
-        <button mat-raised-button color="primary" (click)="openDialog(element.stats, element.getName('en'))">Chart</button>
+        <button mat-raised-button color="primary" (click)="openDialog(element.stats, element.getName('en'))">Display stats</button>
       </td>
     </ng-container>
 
