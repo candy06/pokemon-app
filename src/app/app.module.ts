@@ -20,7 +20,6 @@ import { CapitalizeFirstPipe } from './_pipes/capitalize-first.pipe';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { DescriptionPipe } from './_pipes/description.pipe';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { PokemonsComponent } from './pokemons/pokemons.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatListModule} from '@angular/material/list';
 import { jqxChartComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxchart';
@@ -28,7 +27,13 @@ import { SpiderChartComponent } from './spider-chart/spider-chart.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MatPaginatorModule } from '@angular/material';
-import { DashboardComponent } from './dashboard/dashboard.component'; 
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { PokemonsComponent } from './pokemons/pokemons.component';
+import { PokemonsVisualizerComponent } from './dashboard/pokemons-visualizer/pokemons-visualizer.component';
+import { PokedexSelectorComponent } from './dashboard/pokemons-visualizer/pokedex-selector/pokedex-selector.component'; 
+import {MatSelectModule} from '@angular/material/select';  
+import { PokemonsArrayComponent } from './dashboard/pokemons-visualizer/pokemons-array/pokemons-array.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [ 
@@ -41,7 +46,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     PokemonsComponent,
     jqxChartComponent,
     SpiderChartComponent,
-    DashboardComponent
+    DashboardComponent,
+    PokemonsVisualizerComponent,
+    PokedexSelectorComponent,
+    PokemonsArrayComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +69,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatListModule,
     MatDialogModule,
     MatButtonToggleModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule,
+    MatExpansionModule
   ],
   entryComponents: [
     SpiderChartComponent

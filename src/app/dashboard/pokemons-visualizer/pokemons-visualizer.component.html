@@ -1,0 +1,13 @@
+<div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="5px">
+  <div fxFlex="25%" fxLayout="row" fxLayoutGap="5px">
+    <div fxFlex="40%">
+      <app-pokedex-selector (pokedexChanged)="onPokedexChange($event)"></app-pokedex-selector>
+    </div>
+    <div fxFlex="60%">
+      <!-- TODO - filter component -->
+    </div>
+  </div>
+  <div fxFlex="75%" *ngIf="selectedPokedex">
+    <app-pokemons-array [pokedex]="selectedPokedex"></app-pokemons-array>
+  </div>
+</div>

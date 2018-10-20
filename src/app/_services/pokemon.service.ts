@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Pokemon } from '../_models/pokemon';
 import { CommonService } from './common.service';
 import { Observable } from 'rxjs';
+import { PokemonModel } from '../_models/pokemon-model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,35 @@ import { Observable } from 'rxjs';
 export class PokemonService {
 
   private pokemons: Array<Pokemon> = [];
+  private pokemonModels: Array<PokemonModel> = [];
 
   constructor(private _http: HttpClient, private _common: CommonService) { }
+
+  getPokemonModels(): Array<PokemonModel> {
+    return this.pokemonModels.slice(0, 10);
+  }
+
+  getPokemonModelsPromise(urls: Array<string>, pokemonNumber: number) {
+    this.pokemonModels.length = 0;
+    let promise = new Promise((resolve, reject) => {
+      urls.forEach(url => {
+        this._http.get(url)
+        .toPromise()
+        .then(
+          res => { // Success
+            const pokemonModel: PokemonModel = this._common.convertObjectToPokemonModel(res);
+            this.pokemonModels.push(pokemonModel);
+            if (this.pokemonModels.length === pokemonNumber) resolve();
+          },
+          msg => { // Error
+            reject(msg);
+          }
+        );
+      });
+      
+    });
+    return promise;
+  }
 
   fetchPokemons(urls: Array<string>, pokemonNumber: number) {
     this.pokemons.length = 0;

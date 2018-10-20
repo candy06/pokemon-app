@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserType } from '../_models/user-type';
 import { minDesktopWidth, minTabletWidth } from '../_models/global';
 import { Device } from '../_models/device';
+import { ContextService } from '../_services/context.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,7 @@ export class DashboardComponent implements OnInit {
   private userType: UserType;
   private deviceUsed: Device;
 
-  constructor() { }
+  constructor(private contextService: ContextService) { }
 
   ngOnInit() {
     const screenWidth: number = window.innerWidth;
@@ -27,6 +28,7 @@ export class DashboardComponent implements OnInit {
     } else {
       this.userType = UserType.Player;
     }
+    this.contextService.updateUserType(this.userType);
   }
 
   private updateDeviceUsed(screenWidth: number): void {
@@ -37,6 +39,7 @@ export class DashboardComponent implements OnInit {
     } else {
       this.deviceUsed = Device.Smartphone;
     }
+    this.contextService.updateDeviceUsed(this.deviceUsed);
   }
 
   private onResize(event) {

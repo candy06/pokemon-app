@@ -1,6 +1,6 @@
 <div (window:resize)="onResize($event)">
   <!-- Organizer view on desktop -->
-  <div *ngIf="userType === 1" fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="10px">
+  <div *ngIf="userType === 1" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
     <div fxFlex="33%" fxLayout="column" fxLayoutGap="10px">
       <div fxFlex="50%" style="background-color: green">
         <h1>Video component here...</h1>
@@ -9,8 +9,8 @@
         <h1>Graphs component here...</h1>
       </div>
     </div>
-    <div fxFlex="77%" style="background-color: blue">
-      <h1>Pokemons component here...</h1>
+    <div fxFlex="77%" style="padding: 25px">
+      <app-pokemons-visualizer></app-pokemons-visualizer>
     </div>
   </div>
   <!-- End of organizer view -->
@@ -26,8 +26,8 @@
           <h1>Detailed infos component here...</h1>
         </div>
       </div>
-      <div fxFlex="77%" style="background-color: red">
-        <h1>Pokemons component here...</h1>
+      <div fxFlex="77%" style="padding: 12px;">
+        <app-pokemons-visualizer></app-pokemons-visualizer>
       </div>
     </div>
     <!-- End of player view (tablet) -->
@@ -42,8 +42,8 @@
           <h1>Detailed infos component here...</h1>
         </div>
       </div>
-      <div fxFlex="77%" style="background-color: red">
-        <h1>Pokemons component here...</h1>
+      <div fxFlex="77%" style="padding: 5px;">
+        <app-pokemons-visualizer></app-pokemons-visualizer>
       </div>
     </div>
     <!-- End of player view (smartphone) -->

@@ -1,0 +1,12 @@
+<div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="2px">
+  <div fxFlex="75%">
+    <mat-form-field *ngIf="pokedexModels">
+      <mat-select (selectionChange)="updateParentComponent()" [(value)]="selectedPokedex" placeholder="Choisissez un pokedex">
+        <mat-option *ngFor="let pokedex of pokedexModels" [value]="pokedex">{{ pokedex.getName('fr') }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div *ngIf="selectedPokedex && deviceUsed === 0" fxFlex="25%" id="pokedexDescription">
+    <mat-icon [matTooltip]="selectedPokedex.getDescription('fr')">info</mat-icon>
+  </div>
+</div>

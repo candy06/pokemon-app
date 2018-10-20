@@ -9,7 +9,7 @@ import { PokemonStatistic } from '../_models/pokemon-statistic';
 import { ObservableMedia } from '@angular/flex-layout';
 
 @Component({
-  selector: 'app-pokemons',
+  selector: 'app-pokemons-old',
   templateUrl: './pokemons.component.html',
   styleUrls: ['./pokemons.component.scss']
 })
