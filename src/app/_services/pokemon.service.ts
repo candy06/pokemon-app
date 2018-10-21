@@ -18,9 +18,6 @@ export class PokemonService {
 
   getPokemonModels(nbPokemons?: number): Array<PokemonModel> {
     const max = (nbPokemons) ? nbPokemons : this.pokemonModels.length;
-    /*const pokemonCopy: Array<PokemonModel> = this.pokemonModels;
-    this.pokemonModels.length = 0;
-    return pokemonCopy;*/
     return this.pokemonModels.slice(0, max);
   }
 
@@ -44,28 +41,6 @@ export class PokemonService {
     });
     return promise;
   }
-
-  /*getPokemonModelsPromise(urls: Array<string>, pokemonNumber: number) {
-    this.pokemonModels.length = 0;
-    let promise = new Promise((resolve, reject) => {
-      urls.forEach(url => {
-        this._http.get(url)
-        .toPromise()
-        .then(
-          res => { // Success
-            const pokemonModel: PokemonModel = this._common.convertObjectToPokemonModel(res);
-            this.pokemonModels.push(pokemonModel);
-            if (this.pokemonModels.length === pokemonNumber) resolve();
-          },
-          msg => { // Error
-            reject(msg);
-          }
-        );
-      });
-      
-    });
-    return promise;
-  }*/
 
   fetchPokemons(urls: Array<string>, pokemonNumber: number) {
     this.pokemons.length = 0;

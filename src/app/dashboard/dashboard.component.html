@@ -1,11 +1,14 @@
 <div (window:resize)="onResize($event)">
   <!-- Organizer view on desktop -->
-  <div *ngIf="userType === 1" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+  <div *ngIf="userType === 1" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px" style="padding: 25px;">
     <div fxFlex="33%" fxLayout="column" fxLayoutGap="10px">
       <div fxFlex="50%">
-        <h1>Video component here...</h1>
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1">
+        </iframe>
       </div>
       <div fxFlex="50%">
+        <app-tournament-visitors-chart></app-tournament-visitors-chart>
+        <br>
         <app-pokemons-tournament-stats *ngIf="selectedPokemon" [pokemonModel]="selectedPokemon"></app-pokemons-tournament-stats>
       </div>
     </div>

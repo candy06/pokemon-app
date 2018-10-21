@@ -38,7 +38,9 @@ import { PokemonService } from './_services/pokemon.service';
 import { CommonService } from './_services/common.service';
 import { ContextService } from './_services/context.service';
 import { PokemonsTournamentStatsComponent } from './dashboard/pokemons-tournament-stats/pokemons-tournament-stats.component';
-
+import { SpectatorService } from './_services/spectator.service';
+import { TournamentVisitorsChartComponent } from './dashboard/tournament-visitors-chart/tournament-visitors-chart.component';
+ 
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -54,7 +56,8 @@ import { PokemonsTournamentStatsComponent } from './dashboard/pokemons-tournamen
     PokemonsVisualizerComponent,
     PokedexSelectorComponent,
     PokemonsArrayComponent,
-    PokemonsTournamentStatsComponent
+    PokemonsTournamentStatsComponent,
+    TournamentVisitorsChartComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +84,7 @@ import { PokemonsTournamentStatsComponent } from './dashboard/pokemons-tournamen
   entryComponents: [
     SpiderChartComponent
   ],
-  providers: [PokedexService, PokemonService, CommonService, ContextService],
+  providers: [PokedexService, PokemonService, CommonService, ContextService, SpectatorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

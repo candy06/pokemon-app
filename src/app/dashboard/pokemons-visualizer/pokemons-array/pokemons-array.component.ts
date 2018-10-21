@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange, Output, EventEmitter, ViewChild } from '@angular/core';
 import { PokedexModel } from 'src/app/_models/pokedex-model';
 import { ContextService } from 'src/app/_services/context.service';
 import { PokemonModel } from 'src/app/_models/pokemon-model';
@@ -6,6 +6,7 @@ import { PokemonService } from 'src/app/_services/pokemon.service';
 import { PokemonEntryModel } from 'src/app/_models/pokemon-entry-model';
 import { UserType } from 'src/app/_models/user-type';
 import { Device } from 'src/app/_models/device';
+import { MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-pokemons-array',
@@ -14,6 +15,7 @@ import { Device } from 'src/app/_models/device';
 })
 export class PokemonsArrayComponent implements OnInit, OnChanges {
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @Input() private pokedex: PokedexModel;
   @Output() pokemonChanged = new EventEmitter<PokemonModel>();
   
@@ -26,6 +28,7 @@ export class PokemonsArrayComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.updateDisplayedColumnsArray(this.contextService.getUserType(), this.contextService.getDeviceUsed());
+    console.log(this.paginator);
   }
   
   /**

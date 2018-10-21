@@ -3,13 +3,13 @@
   <!-- Picture -->
   <ng-container matColumnDef="image">
     <th mat-header-cell *matHeaderCellDef> Image </th>
-    <td mat-cell *matCellDef="let element" (click)="selectPokemon(element)"> <img [src]="element.sprite"> </td>
+    <td mat-cell *matCellDef="let element"> <img [src]="element.sprite"> </td>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element" (click)="selectPokemon(element)"> 
+    <td mat-cell *matCellDef="let element"> 
       <h4>{{ element.getName('fr') }}</h4> 
     </td>
   </ng-container>
@@ -17,7 +17,7 @@
   <!-- Description Column -->
   <ng-container matColumnDef="description">
     <th mat-header-cell *matHeaderCellDef> Description </th>
-    <td mat-cell *matCellDef="let element" style="width: 400px" (click)="selectPokemon(element)"> 
+    <td mat-cell *matCellDef="let element" style="width: 400px"> 
       <span><i>{{ element.getDescription('fr') }}</i></span>
     </td>
   </ng-container>
@@ -25,7 +25,7 @@
   <!-- Types Column -->
   <ng-container matColumnDef="types">
     <th mat-header-cell *matHeaderCellDef> Types </th>
-    <td mat-cell *matCellDef="let element" (click)="selectPokemon(element)">
+    <td mat-cell *matCellDef="let element">
       <mat-button-toggle-group name="type" aria-label="type">
         <mat-button-toggle *ngFor="let type of element.types" [value]="type.name" [class]="type.name">{{ type.name |
           capitalizeFirst }}</mat-button-toggle>
@@ -36,7 +36,7 @@
   <!-- Stats -->
   <ng-container matColumnDef="stats">
     <th mat-header-cell *matHeaderCellDef> Stats </th>
-    <td mat-cell *matCellDef="let element" (click)="selectPokemon(element)"> 
+    <td mat-cell *matCellDef="let element"> 
       <a *ngIf="element.stats" href="#">voir stats</a>
     </td>
   </ng-container>
@@ -44,7 +44,7 @@
   <!-- Abilities -->
   <ng-container matColumnDef="abilities">
     <th mat-header-cell *matHeaderCellDef> Abilities </th>
-    <td mat-cell *matCellDef="let element" (click)="selectPokemon(element)"> 
+    <td mat-cell *matCellDef="let element"> 
       <span *ngIf="element.abilities">{{ element.abilities.length + ' capacité(s)' }}</span>
     </td>
   </ng-container>
@@ -52,7 +52,7 @@
   <!-- Moves -->
   <ng-container matColumnDef="moves">
     <th mat-header-cell *matHeaderCellDef> Moves </th>
-    <td mat-cell *matCellDef="let element" (click)="selectPokemon(element)">
+    <td mat-cell *matCellDef="let element">
         <span *ngIf="element.moves">{{ element.moves.length + ' attaques'}}</span>
     </td>
   </ng-container>
@@ -60,11 +60,12 @@
   <!-- Actions -->
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
-    <td mat-cell *matCellDef="let element" (click)="selectPokemon(element)">
+    <td mat-cell *matCellDef="let element">
       <mat-icon>add_circle</mat-icon>
     </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectPokemon(row)"></tr>
+  
 </table>
