@@ -4,6 +4,7 @@ import { Pokemon } from '../_models/pokemon';
 import { CommonService } from './common.service';
 import { Observable } from 'rxjs';
 import { PokemonModel } from '../_models/pokemon-model';
+import { PokemonEntryModel } from '../_models/pokemon-entry-model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,36 @@ export class PokemonService {
 
   constructor(private _http: HttpClient, private _common: CommonService) { }
 
-  getPokemonModels(): Array<PokemonModel> {
-    return this.pokemonModels.slice(0, 10);
+  getPokemonModels(nbPokemons?: number): Array<PokemonModel> {
+    const max = (nbPokemons) ? nbPokemons : this.pokemonModels.length;
+    /*const pokemonCopy: Array<PokemonModel> = this.pokemonModels;
+    this.pokemonModels.length = 0;
+    return pokemonCopy;*/
+    return this.pokemonModels.slice(0, max);
   }
 
-  getPokemonModelsPromise(urls: Array<string>, pokemonNumber: number) {
+  getPokemonModelsPromise(entries: PokemonEntryModel[]): Promise<any> {
+    this.pokemonModels.length = 0;
+    let promise = new Promise((resolve, reject) => {
+      entries.forEach(entry => {
+        this._http.get(entry.url)
+          .toPromise()
+          .then(
+            res => {
+              const pokemonModel: PokemonModel = this._common.convertObjectToPokemonModel(res);
+              this.pokemonModels.push(pokemonModel);
+              if (this.pokemonModels.length === entries.length) resolve();
+            },
+            err => {
+              reject(err);
+            }
+          )
+      });
+    });
+    return promise;
+  }
+
+  /*getPokemonModelsPromise(urls: Array<string>, pokemonNumber: number) {
     this.pokemonModels.length = 0;
     let promise = new Promise((resolve, reject) => {
       urls.forEach(url => {
@@ -39,7 +65,7 @@ export class PokemonService {
       
     });
     return promise;
-  }
+  }*/
 
   fetchPokemons(urls: Array<string>, pokemonNumber: number) {
     this.pokemons.length = 0;

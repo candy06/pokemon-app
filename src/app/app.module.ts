@@ -34,6 +34,10 @@ import { PokedexSelectorComponent } from './dashboard/pokemons-visualizer/pokede
 import {MatSelectModule} from '@angular/material/select';  
 import { PokemonsArrayComponent } from './dashboard/pokemons-visualizer/pokemons-array/pokemons-array.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { PokemonService } from './_services/pokemon.service';
+import { CommonService } from './_services/common.service';
+import { ContextService } from './_services/context.service';
+import { PokemonsTournamentStatsComponent } from './dashboard/pokemons-tournament-stats/pokemons-tournament-stats.component';
 
 @NgModule({
   declarations: [ 
@@ -49,7 +53,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     DashboardComponent,
     PokemonsVisualizerComponent,
     PokedexSelectorComponent,
-    PokemonsArrayComponent
+    PokemonsArrayComponent,
+    PokemonsTournamentStatsComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +81,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
   entryComponents: [
     SpiderChartComponent
   ],
-  providers: [PokedexService],
+  providers: [PokedexService, PokemonService, CommonService, ContextService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

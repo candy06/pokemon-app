@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PokedexModel } from 'src/app/_models/pokedex-model';
 import { ContextService } from 'src/app/_services/context.service';
+import { PokemonModel } from 'src/app/_models/pokemon-model';
 
 @Component({
   selector: 'app-pokemons-visualizer',
@@ -8,6 +9,8 @@ import { ContextService } from 'src/app/_services/context.service';
   styleUrls: ['./pokemons-visualizer.component.scss']
 })
 export class PokemonsVisualizerComponent implements OnInit {
+
+  @Output() pokemonSelectedByUser = new EventEmitter<PokemonModel>();
 
   private selectedPokedex: PokedexModel = null;
 
@@ -17,9 +20,13 @@ export class PokemonsVisualizerComponent implements OnInit {
     
   }
 
-  private onPokedexChange(selectedPokedex: PokedexModel) {
+  private onPokedexChange(selectedPokedex: PokedexModel): void {
     this.selectedPokedex = selectedPokedex;
     this.contextService.updatePokedexSelected(selectedPokedex);
+  }
+
+  private onPokemonChange(selectedPokemon: PokemonModel): void {
+    this.pokemonSelectedByUser.emit(selectedPokemon);
   }
 
 }

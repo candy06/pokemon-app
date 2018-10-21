@@ -5,8 +5,16 @@ import { PokemonStatModel } from "./pokemon-stat-model";
 
 export class PokemonModel {
 
+    private _tournamentStats: Array<number> = [];
+
     constructor(private _names: NameModel[], private _descriptions: DescriptionModel[], private _types?: PokemonTypeModel[], private _sprite?: string, private _stats?: PokemonStatModel[], 
-        private _abilities?: string[], private _moves?: string[]) { }
+        private _abilities?: string[], private _moves?: string[]) { 
+            // Mock percentage of use of the given pokemon for a week
+            for (let i = 0 ; i < 7 ; i++) {
+                const randomUsePercentage = Math.floor(Math.random() * 100);
+                this._tournamentStats.push(randomUsePercentage);
+            }
+        }
 
     getName(lang: string): string {
         let name: string = '';
@@ -71,6 +79,18 @@ export class PokemonModel {
 
     set moves(moves: string[]) {
         this._moves = moves;
+    }
+
+    get tournamentStats(): number[] {
+        return this._tournamentStats;
+    }
+
+    /**
+     * Two pokemons are considered equals if they have the same name
+     * @param pokemonModel 
+     */
+    public equals(pokemonModel: PokemonModel): boolean {
+        return (this.getName('fr') === pokemonModel.getName('fr'))
     }
 
 }

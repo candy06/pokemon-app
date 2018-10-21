@@ -2,15 +2,15 @@
   <!-- Organizer view on desktop -->
   <div *ngIf="userType === 1" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
     <div fxFlex="33%" fxLayout="column" fxLayoutGap="10px">
-      <div fxFlex="50%" style="background-color: green">
+      <div fxFlex="50%">
         <h1>Video component here...</h1>
       </div>
-      <div fxFlex="50%" style="background-color: pink">
-        <h1>Graphs component here...</h1>
+      <div fxFlex="50%">
+        <app-pokemons-tournament-stats *ngIf="selectedPokemon" [pokemonModel]="selectedPokemon"></app-pokemons-tournament-stats>
       </div>
     </div>
     <div fxFlex="77%" style="padding: 25px">
-      <app-pokemons-visualizer></app-pokemons-visualizer>
+      <app-pokemons-visualizer (pokemonSelectedByUser)="updateSelectedPokemon($event)"></app-pokemons-visualizer>
     </div>
   </div>
   <!-- End of organizer view -->
@@ -23,11 +23,11 @@
           <h1>Player's team component here...</h1>
         </div>
         <div fxFlex="50%" style="background-color: orange">
-          <h1>Detailed infos component here...</h1>
+          <h1>Details sur <span *ngIf="selectedPokemon">{{ selectedPokemon.getName('fr') }}</span></h1>
         </div>
       </div>
       <div fxFlex="77%" style="padding: 12px;">
-        <app-pokemons-visualizer></app-pokemons-visualizer>
+        <app-pokemons-visualizer (pokemonSelectedByUser)="updateSelectedPokemon($event)"></app-pokemons-visualizer>
       </div>
     </div>
     <!-- End of player view (tablet) -->
@@ -39,11 +39,11 @@
           <h1>Player's team component here...</h1>
         </div>
         <div fxFlex="75%" style="background-color: orange">
-          <h1>Detailed infos component here...</h1>
+          <h1>Details sur <span *ngIf="selectedPokemon">{{ selectedPokemon.getName('fr') }}</span></h1>
         </div>
       </div>
       <div fxFlex="77%" style="padding: 5px;">
-        <app-pokemons-visualizer></app-pokemons-visualizer>
+        <app-pokemons-visualizer (pokemonSelectedByUser)="updateSelectedPokemon($event)"></app-pokemons-visualizer>
       </div>
     </div>
     <!-- End of player view (smartphone) -->

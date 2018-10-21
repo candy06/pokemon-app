@@ -8,6 +8,6 @@
     </div>
   </div>
   <div fxFlex="75%" *ngIf="selectedPokedex">
-    <app-pokemons-array [pokedex]="selectedPokedex"></app-pokemons-array>
+    <app-pokemons-array (pokemonChanged)="onPokemonChange($event)" [pokedex]="selectedPokedex"></app-pokemons-array>
   </div>
 </div>

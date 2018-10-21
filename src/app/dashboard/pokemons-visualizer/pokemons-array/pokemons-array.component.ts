@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange, Output, EventEmitter } from '@angular/core';
 import { PokedexModel } from 'src/app/_models/pokedex-model';
 import { ContextService } from 'src/app/_services/context.service';
 import { PokemonModel } from 'src/app/_models/pokemon-model';
@@ -15,7 +15,10 @@ import { Device } from 'src/app/_models/device';
 export class PokemonsArrayComponent implements OnInit, OnChanges {
 
   @Input() private pokedex: PokedexModel;
+  @Output() pokemonChanged = new EventEmitter<PokemonModel>();
+  
   private pokemons: Array<PokemonModel> = [];
+  private loading: boolean = true;
 
   private displayedColumns: Array<string> = [];
 
@@ -47,13 +50,16 @@ export class PokemonsArrayComponent implements OnInit, OnChanges {
   }
 
   private loadPokemons(): void {
-    const urls: string[] = [];
-    this.pokedex.pokemonEntryModels.forEach((pokemonEntry: PokemonEntryModel) => {
-      urls.push(pokemonEntry.url);
+    this.loading = true;
+    const pokemonEntriesModel: Array<PokemonEntryModel> = this.pokedex.pokemonEntryModels;
+    this.pokemonService.getPokemonModelsPromise(pokemonEntriesModel).then(() => {
+      this.pokemons = this.pokemonService.getPokemonModels(10);
+      this.loading = false
     });
-    this.pokemonService.getPokemonModelsPromise(urls, urls.length).then(() => {
-      this.pokemons = this.pokemonService.getPokemonModels();
-    });
+  }
+
+  private selectPokemon(pokemon: PokemonModel): void {
+    this.pokemonChanged.emit(pokemon);
   }
 
 }
