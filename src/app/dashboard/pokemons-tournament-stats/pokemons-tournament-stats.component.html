@@ -1,7 +1,3 @@
-<!--<div *ngIf="chart">
-  <canvas #canvas id="canvas">{{ chart }}</canvas> <!-- {{ chart }} -->
-<!--</div>-->
-
-<div [hidden]="!pokemonUseChart">
+<div [hidden]="!pokemonUseChart" style="border: solid; border-width: 2px; padding: 12px">
   <canvas id="pokemonUseChartCanvas">{{ pokemonUseChart }}</canvas>
 </div>

@@ -14,11 +14,13 @@ export class DashboardComponent implements OnInit {
 
   private userType: UserType;
   private deviceUsed: Device;
-  private selectedPokemon: PokemonModel;
+  private selectedPokemon: PokemonModel; // to display more info
+  private pokemonToAdd: PokemonModel; // to add the pokemon in team
 
   constructor(private contextService: ContextService) { }
 
   ngOnInit() {
+    this.selectedPokemon = null;
     const screenWidth: number = window.innerWidth;
     this.updateUserType(screenWidth);
     this.updateDeviceUsed(screenWidth);
@@ -52,6 +54,10 @@ export class DashboardComponent implements OnInit {
 
   private updateSelectedPokemon(pokemon: PokemonModel): void {
     this.selectedPokemon = pokemon;
+  }
+
+  private updatePokemonToBeAdded(pokemon: PokemonModel): void {
+    this.pokemonToAdd = pokemon;
   }
 
 }

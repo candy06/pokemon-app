@@ -22,32 +22,25 @@
     <!-- Player view on tablet (ex: iPad) -->
     <div *ngIf="deviceUsed === 1" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="10px">
       <div fxFlex="33%" fxLayout="row" fxLayoutGap="10px">
-        <div fxFlex="50%" style="background-color: purple">
-          <h1>Player's team component here...</h1>
+        <div fxFlex="35%">
+          <app-pokemon-team [pokemon]="pokemonToAdd"></app-pokemon-team>
         </div>
-        <div fxFlex="50%" style="background-color: orange">
-          <h1>Details sur <span *ngIf="selectedPokemon">{{ selectedPokemon.getName('fr') }}</span></h1>
+        <div fxFlex="75%">
+          <div>
+            <app-pokemon-details *ngIf="selectedPokemon" [pokemon]="selectedPokemon"></app-pokemon-details>
+          </div>
         </div>
       </div>
       <div fxFlex="77%" style="padding: 12px;">
-        <app-pokemons-visualizer (pokemonSelectedByUser)="updateSelectedPokemon($event)"></app-pokemons-visualizer>
+        <app-pokemons-visualizer (pokemonThatHasToBeAddedInTeam)="updatePokemonToBeAdded($event)" (pokemonSelectedByUser)="updateSelectedPokemon($event)"></app-pokemons-visualizer>
       </div>
     </div>
     <!-- End of player view (tablet) -->
 
     <!-- Player view on smartphone (ex: iPhone X) -->
     <div *ngIf="deviceUsed === 2" fxLayout="column" fxLayoutAlign="start stretch">
-      <div fxFlex="33%" fxLayout="row" fxLayoutGap="10px">
-        <div fxFlex="35%" style="background-color: purple">
-          <h1>Player's team component here...</h1>
-        </div>
-        <div fxFlex="75%" style="background-color: orange">
-          <h1>Details sur <span *ngIf="selectedPokemon">{{ selectedPokemon.getName('fr') }}</span></h1>
-        </div>
-      </div>
-      <div fxFlex="77%" style="padding: 5px;">
-        <app-pokemons-visualizer (pokemonSelectedByUser)="updateSelectedPokemon($event)"></app-pokemons-visualizer>
-      </div>
+        <app-pokemon-team [pokemon]="pokemonToAdd"></app-pokemon-team>
+        <app-pokemons-visualizer (pokemonThatHasToBeAddedInTeam)="updatePokemonToBeAdded($event)" (pokemonSelectedByUser)="updateSelectedPokemon($event)"></app-pokemons-visualizer>
     </div>
     <!-- End of player view (smartphone) -->
 

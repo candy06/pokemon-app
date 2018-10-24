@@ -32,13 +32,36 @@ export class PokemonModel {
         return descriptions[0];
     }
 
-    getBestStat(): PokemonStatModel {
-        const values: number[] = [];
-        this._stats.map((stat: PokemonStatModel) => values.push(stat.base));
-        console.log(values);
-        const max: number = Math.max(...values);
-        console.log(max);
-        return null;
+    getBestStats(): PokemonStatModel[] {
+        const bestStats: PokemonStatModel[] = [];
+        const bases: number[] = [];
+        this._stats.forEach((stat: PokemonStatModel) => {
+            bases.push(stat.base);
+        });
+        let maxStatBase: number = 0;
+        bases.forEach((elt: number) => {
+            maxStatBase = (elt > maxStatBase) ? elt : maxStatBase;
+        });
+        this._stats.forEach((stat: PokemonStatModel) => {
+            if (stat.base === maxStatBase) bestStats.push(stat);
+        });
+        return bestStats;
+    }
+
+    getWorstStats(): PokemonStatModel[] {
+        const worstStats: PokemonStatModel[] = [];
+        const bases: number[] = [];
+        this._stats.forEach((stat: PokemonStatModel) => {
+            bases.push(stat.base);
+        });
+        let minStatBase: number = bases[0];
+        bases.forEach((elt: number) => {
+            minStatBase = (elt < minStatBase) ? elt : minStatBase;
+        });
+        this._stats.forEach((stat: PokemonStatModel) => {
+            if (stat.base === minStatBase) worstStats.push(stat);
+        });
+        return worstStats;
     }
 
     get sprite(): string {

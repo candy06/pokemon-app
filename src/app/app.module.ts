@@ -40,6 +40,9 @@ import { ContextService } from './_services/context.service';
 import { PokemonsTournamentStatsComponent } from './dashboard/pokemons-tournament-stats/pokemons-tournament-stats.component';
 import { SpectatorService } from './_services/spectator.service';
 import { TournamentVisitorsChartComponent } from './dashboard/tournament-visitors-chart/tournament-visitors-chart.component';
+import { PokemonDetailsComponent } from './dashboard/pokemon-details/pokemon-details.component'; 
+import {MatTabsModule} from '@angular/material/tabs';
+import { PokemonTeamComponent } from './dashboard/pokemon-team/pokemon-team.component'; 
  
 @NgModule({
   declarations: [ 
@@ -57,7 +60,9 @@ import { TournamentVisitorsChartComponent } from './dashboard/tournament-visitor
     PokedexSelectorComponent,
     PokemonsArrayComponent,
     PokemonsTournamentStatsComponent,
-    TournamentVisitorsChartComponent
+    TournamentVisitorsChartComponent,
+    PokemonDetailsComponent,
+    PokemonTeamComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +84,8 @@ import { TournamentVisitorsChartComponent } from './dashboard/tournament-visitor
     MatButtonToggleModule,
     MatPaginatorModule,
     MatSelectModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTabsModule
   ],
   entryComponents: [
     SpiderChartComponent

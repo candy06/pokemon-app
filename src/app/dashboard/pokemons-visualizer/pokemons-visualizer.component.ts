@@ -11,6 +11,7 @@ import { PokemonModel } from 'src/app/_models/pokemon-model';
 export class PokemonsVisualizerComponent implements OnInit {
 
   @Output() pokemonSelectedByUser = new EventEmitter<PokemonModel>();
+  @Output() pokemonThatHasToBeAddedInTeam = new EventEmitter<PokemonModel>();
 
   private selectedPokedex: PokedexModel = null;
 
@@ -27,6 +28,10 @@ export class PokemonsVisualizerComponent implements OnInit {
 
   private onPokemonChange(selectedPokemon: PokemonModel): void {
     this.pokemonSelectedByUser.emit(selectedPokemon);
+  }
+
+  private onAddPokemonToTeam(selectedPokemon: PokemonModel): void {
+    this.pokemonThatHasToBeAddedInTeam.emit(selectedPokemon);
   }
 
 }

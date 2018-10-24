@@ -19,10 +19,14 @@ export class PokemonsTournamentStatsComponent implements OnInit, OnChanges {
   constructor(private _common: CommonService) { }
 
   ngOnInit() {
-    
+    this.pokemonModel = null;
+    this.pokemonsDisplayed.length = 0;
+    if (this.pokemonUseChart) this.pokemonUseChart.update();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+
+    if (this.pokemonModel) this.pokemonModel = null;
 
     if (changes['pokemonModel']) {
 
