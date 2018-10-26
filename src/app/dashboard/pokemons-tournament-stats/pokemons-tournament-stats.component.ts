@@ -15,18 +15,15 @@ export class PokemonsTournamentStatsComponent implements OnInit, OnChanges {
   private pokemonUseChart;
   private chartLabels: string[] = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
   private pokemonsDisplayed: string[] = [];
+  private pokemonSelected: string;
 
   constructor(private _common: CommonService) { }
 
   ngOnInit() {
-    this.pokemonModel = null;
-    this.pokemonsDisplayed.length = 0;
-    if (this.pokemonUseChart) this.pokemonUseChart.update();
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-
-    if (this.pokemonModel) this.pokemonModel = null;
 
     if (changes['pokemonModel']) {
 
@@ -47,6 +44,29 @@ export class PokemonsTournamentStatsComponent implements OnInit, OnChanges {
       }
     }
 
+  }
+
+  private clearGraph(): void {
+    this.pokemonSelected = undefined;
+    this.pokemonsDisplayed.length = 0;
+    this.pokemonUseChart.data.datasets.length = 0;
+    this.pokemonUseChart.update();
+  }
+
+  private remove(pokemonSelected: string): void {
+    let indexOfPokemonSelected: number = -1;
+    for (let i = 0 ; i < this.pokemonsDisplayed.length ; i++) {
+      if (this.pokemonsDisplayed[i] === pokemonSelected) {
+        indexOfPokemonSelected = i;
+        this.pokemonSelected = undefined;
+        break;
+      }
+    }
+    if (indexOfPokemonSelected >= 0) {
+      this.pokemonUseChart.data.datasets.splice(indexOfPokemonSelected, 1);
+      this.pokemonsDisplayed.splice(indexOfPokemonSelected, 1);
+    }
+    this.pokemonUseChart.update();
   }
 
   private addDataset(): void {

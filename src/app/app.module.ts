@@ -42,7 +42,8 @@ import { SpectatorService } from './_services/spectator.service';
 import { TournamentVisitorsChartComponent } from './dashboard/tournament-visitors-chart/tournament-visitors-chart.component';
 import { PokemonDetailsComponent } from './dashboard/pokemon-details/pokemon-details.component'; 
 import {MatTabsModule} from '@angular/material/tabs';
-import { PokemonTeamComponent } from './dashboard/pokemon-team/pokemon-team.component'; 
+import { PokemonTeamComponent } from './dashboard/pokemon-team/pokemon-team.component';
+import {MatDividerModule} from '@angular/material/divider';
  
 @NgModule({
   declarations: [ 
@@ -85,7 +86,8 @@ import { PokemonTeamComponent } from './dashboard/pokemon-team/pokemon-team.comp
     MatPaginatorModule,
     MatSelectModule,
     MatExpansionModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDividerModule
   ],
   entryComponents: [
     SpiderChartComponent

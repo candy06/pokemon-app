@@ -1,3 +1,15 @@
-<div [hidden]="!pokemonUseChart" style="border: solid; border-width: 2px; padding: 12px">
+<div [hidden]="!pokemonUseChart" style="border: solid; border-width: 1px; padding: 12px">
   <canvas id="pokemonUseChartCanvas">{{ pokemonUseChart }}</canvas>
+  <br>
+  <mat-divider></mat-divider>
+  <br>
+  <div style="margin-top: 15px" fxLayout="row" fxLayoutGap="10px">
+    <mat-select *ngIf="pokemonsDisplayed.length !== 0" fxFlex="30%" placeholder="Pokemons dans le graphique" [(value)]="pokemonSelected">
+      <mat-option *ngFor="let pokemonName of pokemonsDisplayed" [value]="pokemonName">
+        {{ pokemonName }}
+      </mat-option>
+    </mat-select>
+    <button (click)="remove(pokemonSelected)" fxFlex="50%" mat-stroked-button color="primary" *ngIf="pokemonSelected">Supprimer les informations de {{ pokemonSelected }} </button>
+    <button (click)="clearGraph()" *ngIf="pokemonsDisplayed.length !== 0" fxFlex="20%" mat-stroked-button color="primary">Effacer le graphique</button>
+  </div>
 </div>
