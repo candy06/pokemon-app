@@ -1,6 +1,6 @@
 <div *ngIf="team" style="margin: 8px">
   <h4 style="text-align: center">Mon équipe pokémon</h4>
-  <mat-grid-list [cols]="cols" [rowHeight]="rowHeight">
+  <mat-grid-list [cols]="cols">
     <mat-grid-tile *ngFor="let pokemon of team" style="border:solid; border-width: 1px" (dblclick)="removePokemon(pokemon)">
       <span *ngIf="!pokemon"><em>empty</em></span>
       <img *ngIf="pokemon" [src]="pokemon.sprite" alt="loading">

@@ -1,0 +1,29 @@
+#generalDetails {
+    h2 {
+        text-align: center;
+    }
+}
+
+.spacer {
+    flex: 1 1 auto;
+  }
+
+.addBtn {
+    position: relative;
+    top: 0;
+    right: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-expansion-panel {
+    margin-bottom: 10px;
+}

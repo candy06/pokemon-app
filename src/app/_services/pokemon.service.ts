@@ -11,10 +11,20 @@ import { PokemonEntryModel } from '../_models/pokemon-entry-model';
 })
 export class PokemonService {
 
+  private selectedPokemon: PokemonModel;
+
   private pokemons: Array<Pokemon> = [];
   private pokemonModels: Array<PokemonModel> = [];
 
   constructor(private _http: HttpClient, private _common: CommonService) { }
+
+  selectPokemonModel(pokemon: PokemonModel): void {
+    this.selectedPokemon = pokemon;
+  }
+
+  getSelectedPokemon(): PokemonModel {
+    return this.selectedPokemon;
+  }
 
   getPokemonModels(nbPokemons?: number): Array<PokemonModel> {
     const max = (nbPokemons) ? nbPokemons : this.pokemonModels.length;

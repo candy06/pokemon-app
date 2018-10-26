@@ -11,7 +11,7 @@ export class PokemonTeamComponent implements OnInit, OnChanges {
   @Input() private pokemon: PokemonModel;
   private team: PokemonModel[];
   private cols: number;
-  private rowHeight: number;
+  //private rowHeight: number;
 
   constructor() { }
 
@@ -19,7 +19,7 @@ export class PokemonTeamComponent implements OnInit, OnChanges {
     const teamSize: number = 6;
     this.team = new Array<PokemonModel>(teamSize);
     this.cols = this.team.length / 2;
-    this.rowHeight = 75;
+    //this.rowHeight = 75;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -38,20 +38,16 @@ export class PokemonTeamComponent implements OnInit, OnChanges {
   }
 
   private removePokemon(pokemon: PokemonModel): void {
-    console.log('removing pkmn')
     let pokemonToRemoveIndex: number = -1;
     for (let i = 0 ; i < this.team.length ; i++) {
       let pokemonInTeam: PokemonModel = this.team[i];
       if (pokemonInTeam.equals(pokemon)) {
-        console.log('found');
         pokemonToRemoveIndex = i;
         pokemonInTeam = undefined;
         break;
       }
     }
-    //this.team.slice(pokemonToRemoveIndex, 1);
     delete this.team[pokemonToRemoveIndex];
-    console.log(this.team);
   }
 
 }

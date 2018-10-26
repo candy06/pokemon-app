@@ -1,1 +1,47 @@
-{{ pokemon.getName('fr') }}
+<div *ngIf="pokemon" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="10px">
+    <div id="generalDetails">
+        <h2>{{ pokemon.getName('fr') }}</h2>
+    </div>
+    <mat-accordion class="example-headers-align">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{ abilitiesLabel }}
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list dense>
+                <mat-list-item *ngFor="let ability of pokemon.abilities">
+                    <h4>{{ ability | capitalizeFirst }}</h4>
+                </mat-list-item>
+            </mat-list>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{ attaquesLabel }}
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list dense>
+                <mat-list-item *ngFor="let move of displayedMoves">
+                    <h4>{{ move | capitalizeFirst }}</h4>
+                </mat-list-item>
+            </mat-list>
+            <mat-action-row>
+                <button style="margin-right: 2.5px" mat-stroked-button disabled>{{prevLabel}}</button>
+                <button style="margin-left: 2.5px" mat-stroked-button disabled>{{nextLabel}}</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{ statsLabel }}
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list dense>
+                <mat-list-item *ngFor="let stat of pokemon.stats">
+                    <h4>{{ stat.name + ': ' + stat.base }}</h4>
+                </mat-list-item>
+            </mat-list>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

@@ -42,6 +42,8 @@ export class PokemonsTournamentStatsComponent implements OnInit, OnChanges {
           this.addDataset();
         }
       }
+    } else {
+      this.pokemonModel = null;
     }
 
   }

@@ -44,7 +44,7 @@ import { PokemonDetailsComponent } from './dashboard/pokemon-details/pokemon-det
 import {MatTabsModule} from '@angular/material/tabs';
 import { PokemonTeamComponent } from './dashboard/pokemon-team/pokemon-team.component';
 import {MatDividerModule} from '@angular/material/divider';
- 
+
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -90,7 +90,7 @@ import {MatDividerModule} from '@angular/material/divider';
     MatDividerModule
   ],
   entryComponents: [
-    SpiderChartComponent
+    SpiderChartComponent, PokemonDetailsComponent
   ],
   providers: [PokedexService, PokemonService, CommonService, ContextService, SpectatorService],
   bootstrap: [AppComponent]
