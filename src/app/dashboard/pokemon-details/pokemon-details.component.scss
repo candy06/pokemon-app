@@ -1,3 +1,68 @@
+.pokemonPicture {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    height: 55px;
+    width: 55px;
+    padding: 5px;
+    margin-left: 5px;
+    border-radius: 50%;
+    border:solid;
+    border-width: 0.75px;
+    background: rgba(234, 207, 152, .1);
+}
+
+mat-card-header {
+    width: 100%;
+}
+
+mat-card-content {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+#pokemonHeaderContent {
+    margin-left: 45px;
+    margin-right: 10px;
+    width: 100%;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.type {
+    font-size: 14px;
+}
+
+.pkmnDescription {
+    font-style: italic;
+    font-size: 14px;
+    text-align: justify;
+}
+
+button.mat-icon-button.addBtn {
+    position: absolute;
+    top: auto;
+    right: 10px;
+}
+
+mat-card-actions {
+    text-align: center;
+    margin: 0;
+
+    > button {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+}
+
+mat-card-content {
+    padding: 8px;
+}
+
+// OLD CSS
 #generalDetails {
     h2 {
         text-align: center;
@@ -26,4 +91,87 @@
 
 mat-expansion-panel {
     margin-bottom: 10px;
+}
+
+mat-button-toggle-group {
+    border: solid;
+    border-width: 1.5px;
+}
+
+mat-button-toggle {
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+}
+
+.poison {
+    background-color: #9d6b90;
+}
+
+.grass {
+    background-color: #7DB065;
+}
+
+.fire {
+    background-color: #E76250;
+}
+
+.flying {
+    background-color: #699CC9;
+}
+
+.water {
+    background-color: #6498E5;
+}
+
+.bug {
+    background-color: #acb14b;
+}
+
+.normal {
+    background-color: #a9aaa1;
+}
+
+.electric {
+    background-color: #E3C063;
+}
+
+.ground {
+    background-color: #ceb267;
+}
+
+.fairy {
+    background-color: #dba6d7;
+}
+
+.fighting {
+    background-color: #ac674e;
+}
+
+.psychic {
+    background-color: #e972a2;
+}
+
+.rock {
+    background-color: #b6a771;
+}
+
+.steel {
+    background-color: #adacb9;
+}
+
+.ice {
+    background-color: #7cc9e9;
+}
+
+.dragon {
+    background-color: #827bde;
+}
+
+.ghost {
+    background-color: #7179b9;
+}
+
+.dark {
+    background-color: #886b54;
 }

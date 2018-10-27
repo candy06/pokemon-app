@@ -8,6 +8,7 @@ import { UserType } from 'src/app/_models/user-type';
 import { Device } from 'src/app/_models/device';
 import { MatPaginator, MatDialog } from '@angular/material';
 import { PokemonDetailsComponent } from '../../pokemon-details/pokemon-details.component';
+import { PokemonsTeamService } from 'src/app/_services/pokemons-team.service';
 
 @Component({
   selector: 'app-pokemons-array',
@@ -30,7 +31,7 @@ export class PokemonsArrayComponent implements OnInit, OnChanges {
   private displayedColumns: Array<string> = [];
   private columnsToDisplay: Array<string> = [];
 
-  constructor(private contextService: ContextService, private pokemonService: PokemonService, private dialog: MatDialog) { }
+  constructor(private contextService: ContextService, private pokemonService: PokemonService, private dialog: MatDialog, private teamService: PokemonsTeamService) { }
 
   ngOnInit() {
     this.updateDisplayedColumnsArray(this.contextService.getUserType(), this.contextService.getDeviceUsed());
@@ -88,8 +89,11 @@ export class PokemonsArrayComponent implements OnInit, OnChanges {
     this.pokemonService.selectPokemonModel(pokemon);
     if (this.contextService.getDeviceUsed() === Device.Smartphone) {
       const dialogRef = this.dialog.open(PokemonDetailsComponent, {
-        width: 'auto',
-        //data: {pkmn: pokemon}
+        width: '95%',
+      });
+      dialogRef.afterClosed().subscribe(() => {
+        const lastPokemonAdded: PokemonModel = this.teamService.getLastAddedPokemon();
+        this.addToTeam(lastPokemonAdded);
       });
     } else {
       this.pokemonChanged.emit(pokemon);

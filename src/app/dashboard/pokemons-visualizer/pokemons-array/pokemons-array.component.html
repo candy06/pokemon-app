@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="pokemons" class="mat-elevation-z8" (window:resize)="onResize($event)">
+<table *ngIf="pokemons.length > 0" mat-table [dataSource]="pokemons" class="mat-elevation-z8" (window:resize)="onResize($event)">
 
   <!-- Picture -->
   <ng-container matColumnDef="image">
@@ -8,7 +8,7 @@
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <th mat-header-cell *matHeaderCellDef> Nom </th>
     <td mat-cell *matCellDef="let element">
       <h4>{{ element.getName('fr') }}</h4>
     </td>
@@ -54,7 +54,7 @@
 
   <!-- Abilities -->
   <ng-container matColumnDef="abilities">
-    <th mat-header-cell *matHeaderCellDef> Abilities </th>
+    <th mat-header-cell *matHeaderCellDef> Capacités </th>
     <td mat-cell *matCellDef="let element">
       <span *ngIf="element.abilities">{{ element.abilities.length + ' capacité(s)' }}</span>
     </td>
@@ -62,7 +62,7 @@
 
   <!-- Moves -->
   <ng-container matColumnDef="moves">
-    <th mat-header-cell *matHeaderCellDef> Moves </th>
+    <th mat-header-cell *matHeaderCellDef> Attaques </th>
     <td mat-cell *matCellDef="let element">
       <span *ngIf="element.moves">{{ element.moves.length + ' attaques'}}</span>
     </td>
@@ -77,6 +77,6 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-  <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" (dblclick)="addToTeam(row)" (click)="selectPokemon(row)" (hover)="displayImage(row)"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" (click)="selectPokemon(row)" (hover)="displayImage(row)"></tr> <!--  (dblclick)="addToTeam(row)" -->
 
 </table>

@@ -1,12 +1,106 @@
-<div *ngIf="pokemon" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="10px">
-    <div id="generalDetails">
-        <h2>{{ pokemon.getName('fr') }}</h2>
-    </div>
+<mat-card *ngIf="pokemon">
+    <mat-card-header>
+        <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="15px">
+            <div (click)="updateUserAction('description')" style="cursor: pointer;">
+                <img class="pokemonPicture" [src]="pokemon.sprite">
+            </div>
+            <div id="pokemonHeaderContent">
+                <mat-card-title><span class="title">{{ pokemon.getName('fr') }}</span></mat-card-title>
+                <mat-card-subtitle>
+                    <span class="type" *ngIf="pokemon.types && context.getDeviceUsed() === 1">{{ pokemon.types.length >
+                        1 ? 'Types: ' : 'Type: ' }}</span>
+                    <span class="type" *ngIf="pokemon.types.length === 1">{{ pokemon.types[0].name | capitalizeFirst }}</span>
+                    <span class="type" *ngIf="pokemon.types.length === 2">{{ pokemon.types[0].name | capitalizeFirst }}
+                        & {{ pokemon.types[1].name | capitalizeFirst }}</span>
+                </mat-card-subtitle>
+            </div>
+            <button *ngIf="!isPokemonAdded" mat-icon-button class="addBtn" (click)="addPokemonInTeam()">
+                <mat-icon>add_circle</mat-icon>
+            </button>
+            <button *ngIf="isPokemonAdded" mat-icon-button class="addBtn" disabled>
+                <mat-icon>check_circle</mat-icon>
+            </button>
+        </div>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+        <!-- Display pokemon description -->
+        <div *ngIf="userAction === 0">
+            <p *ngIf="pokemon.getDescription('fr')" class="pkmnDescription">
+                {{ pokemon.getDescription('fr') }}
+            </p>
+        </div>
+        <!-- Display help -->
+        <div *ngIf="userAction === 1">
+            <mat-list dense>
+                <mat-list-item>
+                    <mat-icon matListIcon>looks_one</mat-icon>
+                    <h3 matLine> Voir les capacités </h3>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon matListIcon>looks_two</mat-icon>
+                    <h3 matLine> Voir les attaques </h3>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon matListIcon>looks_3</mat-icon>
+                    <h3 matLine> Voir les statistiques </h3>
+                </mat-list-item>
+            </mat-list>
+        </div>
+        <!-- Display pokemon abilities -->
+        <div *ngIf="userAction === 1">
+
+        </div>
+        <!-- Display pokemon moves -->
+        <div *ngIf="userAction === 1">
+
+        </div>
+        <!-- Display pokemon stats -->
+        <div *ngIf="userAction === 1">
+
+        </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions *ngIf="context.getDeviceUsed() === 1">
+        <button *ngIf="pokemon.abilities" (click)="updateUserAction('abilities')" mat-stroked-button><span *ngIf="pokemon.abilities.length > 1">Capacités</span><span
+                *ngIf="pokemon.abilities.length === 1">Capacité</span></button>
+        <button *ngIf="pokemon.moves" (click)="updateUserAction('moves')" mat-stroked-button><span *ngIf="pokemon.moves.length > 1">Attaques</span><span
+                *ngIf="pokemon.moves.length === 1">Attaque</span></button>
+        <button *ngIf="pokemon.stats" mat-stroked-button (click)="updateUserAction('stats')"><span>Statistiques</span></button>
+    </mat-card-actions>
+    <mat-card-actions *ngIf="context.getDeviceUsed() === 2">
+        <button *ngIf="pokemon.abilities" mat-icon-button (click)="updateUserAction('abilities')">
+            <mat-icon>looks_one</mat-icon>
+        </button>
+        <button *ngIf="pokemon.moves" mat-icon-button (click)="updateUserAction('moves')">
+            <mat-icon>looks_two</mat-icon>
+        </button>
+        <button *ngIf="pokemon.stats" mat-icon-button (click)="updateUserAction('stats')">
+            <mat-icon>looks_3</mat-icon>
+        </button>
+        <button *ngIf="pokemon.stats" mat-icon-button (click)="updateUserAction('info')">
+            <mat-icon>info</mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>
+
+
+
+
+
+
+
+<!--<div *ngIf="pokemon" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px">
+    <h2>{{ pokemon.getName('fr') }}</h2>
+    <mat-button-toggle-group *ngIf="pokemon.types && context.getDeviceUsed() === 2" name="type" aria-label="type" vertical="false">
+        <mat-button-toggle *ngFor="let type of pokemon.types" [value]="type.name" [class]="type.name">{{ type.name
+            | capitalizeFirst }}</mat-button-toggle>
+    </mat-button-toggle-group>
     <mat-accordion class="example-headers-align">
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    {{ abilitiesLabel }}
+                    <h4>Capacites <span *ngIf="context.getDeviceUsed() === 1">de {{ pokemon.getName('fr') }}</span></h4>
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-list dense>
@@ -18,7 +112,7 @@
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    {{ attaquesLabel }}
+                    <h4>Attaques <span *ngIf="context.getDeviceUsed() === 1">de {{ pokemon.getName('fr') }}</span></h4>
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-list dense>
@@ -34,7 +128,7 @@
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    {{ statsLabel }}
+                    <h4>Statistiques <span *ngIf="context.getDeviceUsed() === 1">de {{ pokemon.getName('fr') }}</span></h4>
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-list dense>
@@ -44,4 +138,9 @@
             </mat-list>
         </mat-expansion-panel>
     </mat-accordion>
-</div>
+    <p *ngIf="isPokemonAdded && context.getDeviceUsed() === 2" style="color: red; font-weight: bold; text-align: center; font-size: 15px">
+        <span>Ajout du pokémon fait avec succès.</span><br>
+        <span style="font-size: 12px">Les changements seront pris en compte à la fermeture de la boîte de dialogue.</span>
+    </p>
+    <button  *ngIf="!isPokemonAdded" mat-stroked-button color="primary" (click)="addPokemonInTeam()">Ajouter dans l'equipe</button>
+</div>-->

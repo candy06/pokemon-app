@@ -41,6 +41,7 @@ export class PokemonTeamComponent implements OnInit, OnChanges {
     let pokemonToRemoveIndex: number = -1;
     for (let i = 0 ; i < this.team.length ; i++) {
       let pokemonInTeam: PokemonModel = this.team[i];
+      if (!pokemonInTeam) continue;
       if (pokemonInTeam.equals(pokemon)) {
         pokemonToRemoveIndex = i;
         pokemonInTeam = undefined;
