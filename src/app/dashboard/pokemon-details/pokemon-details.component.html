@@ -48,16 +48,16 @@
             </mat-list>
         </div>
         <!-- Display pokemon abilities -->
-        <div *ngIf="userAction === 1">
-
+        <div *ngIf="userAction === 2">
+            <app-pokemon-abilities-details [abilityUrls]="pokemon.abilities"></app-pokemon-abilities-details>
         </div>
         <!-- Display pokemon moves -->
-        <div *ngIf="userAction === 1">
-
+        <div *ngIf="userAction === 3">
+            
         </div>
         <!-- Display pokemon stats -->
-        <div *ngIf="userAction === 1">
-
+        <div *ngIf="userAction === 4">
+            <app-pokemon-stats-details [stats]="pokemon.stats" [name]="pokemon.getName('fr')"></app-pokemon-stats-details>
         </div>
     </mat-card-content>
     <mat-divider></mat-divider>

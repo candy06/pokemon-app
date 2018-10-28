@@ -44,6 +44,8 @@ import { PokemonDetailsComponent } from './dashboard/pokemon-details/pokemon-det
 import {MatTabsModule} from '@angular/material/tabs';
 import { PokemonTeamComponent } from './dashboard/pokemon-team/pokemon-team.component';
 import {MatDividerModule} from '@angular/material/divider'; 
+import { PokemonAbilitiesDetailsComponent } from './dashboard/pokemon-details/pokemon-abilities-details/pokemon-abilities-details.component';
+import { PokemonStatsDetailsComponent } from './dashboard/pokemon-details/pokemon-stats-details/pokemon-stats-details.component'; 
 
 @NgModule({
   declarations: [ 
@@ -63,7 +65,9 @@ import {MatDividerModule} from '@angular/material/divider';
     PokemonsTournamentStatsComponent,
     TournamentVisitorsChartComponent,
     PokemonDetailsComponent,
-    PokemonTeamComponent
+    PokemonTeamComponent,
+    PokemonAbilitiesDetailsComponent,
+    PokemonStatsDetailsComponent
   ],
   imports: [
     BrowserModule,

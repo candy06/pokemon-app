@@ -75,7 +75,7 @@ export class CommonService {
       // Extract abilities
       let abilities: string[] = [];
       res.abilities.forEach(elt => {
-        abilities.push(elt.ability.name);
+        abilities.push(elt.ability.url);
       });
       pokemonModel.abilities = abilities;
       // Extract moves

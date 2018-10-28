@@ -1,0 +1,14 @@
+<div id="graph" [hidden]="!chart">
+  <canvas id="canvas" height="auto" width="auto">{{ chart }}</canvas>
+</div>
+
+<div *ngIf="context.getDeviceUsed() === 2">
+  <mat-list dense>
+    <mat-list-item *ngFor="let stat of stats"> 
+     <p>
+       <span class="stat-name">{{ stat.name | capitalizeFirst }}</span> 
+       : <span class="stat-base">{{ stat.base }}</span>
+      </p>
+    </mat-list-item>
+  </mat-list>
+</div>

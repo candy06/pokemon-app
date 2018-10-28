@@ -11,7 +11,6 @@ export class PokemonTeamComponent implements OnInit, OnChanges {
   @Input() private pokemon: PokemonModel;
   private team: PokemonModel[];
   private cols: number;
-  //private rowHeight: number;
 
   constructor() { }
 
@@ -19,7 +18,6 @@ export class PokemonTeamComponent implements OnInit, OnChanges {
     const teamSize: number = 6;
     this.team = new Array<PokemonModel>(teamSize);
     this.cols = this.team.length / 2;
-    //this.rowHeight = 75;
   }
 
   ngOnChanges(changes: SimpleChanges): void {

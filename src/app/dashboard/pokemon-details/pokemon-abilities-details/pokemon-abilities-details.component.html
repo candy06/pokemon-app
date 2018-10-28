@@ -1,0 +1,29 @@
+<div *ngIf="abilityModels.length > 0">
+
+  <div *ngIf="context.getDeviceUsed() === 2">
+    <mat-expansion-panel *ngFor="let ability of abilityModels">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="mat-title">
+          {{ ability.getName('fr') }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <p class="contentSmartphone">{{ ability.getDescription('fr') }}</p>
+
+    </mat-expansion-panel>
+  </div>
+
+  <div *ngIf="context.getDeviceUsed() === 1">
+    <mat-tab-group>
+      <mat-tab *ngFor="let ability of abilityModels">
+        <ng-template mat-tab-label>
+          <h3>{{ ability.getName('fr') }}</h3>
+        </ng-template>
+        <p class="contentTablet">
+          {{ ability.getDescription('fr') }}
+        </p>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+</div>

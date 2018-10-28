@@ -5,6 +5,9 @@ import { CommonService } from './common.service';
 import { Observable } from 'rxjs';
 import { PokemonModel } from '../_models/pokemon-model';
 import { PokemonEntryModel } from '../_models/pokemon-entry-model';
+import { PokemonAbilityModel } from '../_models/pokemon-ability-model';
+import { NameModel } from '../_models/name-model';
+import { DescriptionModel } from '../_models/description-model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +20,26 @@ export class PokemonService {
   private pokemonModels: Array<PokemonModel> = [];
 
   constructor(private _http: HttpClient, private _common: CommonService) { }
+
+  getPokemonAbilityDetails(urls: string[]): PokemonAbilityModel[] {
+    const abilityModels: PokemonAbilityModel[] = [];
+    urls.forEach(url => {
+      this._http.get(url).subscribe((res: any) => {
+        const names: NameModel[] = [];
+        const descriptions: DescriptionModel[] = [];
+        res.names.forEach((elt: any) => {
+          const nameModel: NameModel = new NameModel(elt.name, elt.language.name);
+          names.push(nameModel);
+        });
+        res.flavor_text_entries	.forEach((elt: any) => {
+          const descriptionModel: DescriptionModel = new DescriptionModel(elt.flavor_text, elt.language.name);
+          descriptions.push(descriptionModel);
+        });
+        abilityModels.push(new PokemonAbilityModel(names, descriptions));
+      });
+    });
+    return abilityModels;
+  }
 
   selectPokemonModel(pokemon: PokemonModel): void {
     this.selectedPokemon = pokemon;

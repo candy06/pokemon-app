@@ -8,7 +8,7 @@ export class PokemonModel {
     private _tournamentStats: Array<number> = [];
 
     constructor(private _names: NameModel[], private _descriptions: DescriptionModel[], private _types?: PokemonTypeModel[], private _sprite?: string, private _stats?: PokemonStatModel[], 
-        private _abilities?: string[], private _moves?: string[]) { 
+        private _abilitiesUrls?: string[], private _moves?: string[]) { 
             // Mock percentage of use of the given pokemon for a week
             for (let i = 0 ; i < 7 ; i++) {
                 const randomUsePercentage = Math.floor(Math.random() * 100);
@@ -89,11 +89,11 @@ export class PokemonModel {
     }
 
     get abilities(): string[] {
-        return this._abilities;
+        return this._abilitiesUrls;
     }
 
-    set abilities(abilities: string[]) {
-        this._abilities = abilities;
+    set abilities(abilitiesUrls: string[]) {
+        this._abilitiesUrls = abilitiesUrls;
     }
 
     get moves(): string[] {

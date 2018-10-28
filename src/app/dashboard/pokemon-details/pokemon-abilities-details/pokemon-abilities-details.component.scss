@@ -1,0 +1,23 @@
+.mat-title {
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0;
+}
+
+.contentSmartphone, .contentTablet {
+    font-style: italic;
+    text-align: justify;
+}
+
+.contentSmartphone {
+    font-size: 12px;
+}
+
+.contentTablet {
+    font-size: 15px;
+}
+
+mat-expansion-panel {
+    margin: 5px;
+}
