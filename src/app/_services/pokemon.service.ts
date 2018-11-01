@@ -8,6 +8,7 @@ import { PokemonEntryModel } from '../_models/pokemon-entry-model';
 import { PokemonAbilityModel } from '../_models/pokemon-ability-model';
 import { NameModel } from '../_models/name-model';
 import { DescriptionModel } from '../_models/description-model';
+import { PokemonMoveModel } from '../_models/pokemon-move-model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,28 @@ export class PokemonService {
   private pokemonModels: Array<PokemonModel> = [];
 
   constructor(private _http: HttpClient, private _common: CommonService) { }
+
+  getPokemonMoveDetails(urls: string[]): PokemonMoveModel[] {
+    const moveModels: PokemonMoveModel[] = [];
+    urls.forEach(url => {
+      this._http.get(url).subscribe((res: any) => {
+        const names: NameModel[] = [];
+        const descriptions: DescriptionModel[] = [];
+        // Extract names
+        res.names.forEach((elt: any) => {
+          const nameModel: NameModel = new NameModel(elt.name, elt.language.name);
+          names.push(nameModel);
+        });
+        // Extract descriptions
+        res.flavor_text_entries	.forEach((elt: any) => {
+          const descriptionModel: DescriptionModel = new DescriptionModel(elt.flavor_text, elt.language.name);
+          descriptions.push(descriptionModel);
+        });
+        moveModels.push(new PokemonMoveModel(names, descriptions, res.power, res.accuracy, res.pp, res.priority, res.type.name));
+      });
+    });
+    return moveModels;
+  }
 
   getPokemonAbilityDetails(urls: string[]): PokemonAbilityModel[] {
     const abilityModels: PokemonAbilityModel[] = [];

@@ -2,7 +2,7 @@
   <h4 style="text-align: center">Mon équipe pokémon</h4>
   <mat-grid-list [cols]="cols">
     <mat-grid-tile *ngFor="let pokemon of team" style="border:solid; border-width: 1px">
-      <div *ngIf="pokemon">
+      <div *ngIf="pokemon" (click)="pokemonSelected(pokemon)">
         <img [src]="pokemon.sprite" alt="loading">
           <button (click)="removePokemon(pokemon)" class="removeBtn" mat-icon-button>
             <mat-icon>delete</mat-icon>

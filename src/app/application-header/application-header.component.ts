@@ -20,7 +20,7 @@ export class ApplicationHeaderComponent implements OnInit {
    * Navigate to the app's home page
    */
   private home(): void {
-    this.router.navigate(['home']);
+    this.router.navigate(['dashboard']);
   }
 
 }

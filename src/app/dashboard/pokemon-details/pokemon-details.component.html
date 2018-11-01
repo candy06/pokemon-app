@@ -53,7 +53,7 @@
         </div>
         <!-- Display pokemon moves -->
         <div *ngIf="userAction === 3">
-            
+            <app-pokemon-moves-details [moveUrls]="pokemon.moves"></app-pokemon-moves-details>
         </div>
         <!-- Display pokemon stats -->
         <div *ngIf="userAction === 4">
@@ -62,11 +62,11 @@
     </mat-card-content>
     <mat-divider></mat-divider>
     <mat-card-actions *ngIf="context.getDeviceUsed() === 1">
-        <button *ngIf="pokemon.abilities" (click)="updateUserAction('abilities')" mat-stroked-button><span *ngIf="pokemon.abilities.length > 1">Capacités</span><span
+        <button *ngIf="pokemon.abilities" (click)="updateUserAction('abilities')" mat-stroked-button [disabled]="userAction === 2"><span *ngIf="pokemon.abilities.length > 1">Capacités</span><span
                 *ngIf="pokemon.abilities.length === 1">Capacité</span></button>
-        <button *ngIf="pokemon.moves" (click)="updateUserAction('moves')" mat-stroked-button><span *ngIf="pokemon.moves.length > 1">Attaques</span><span
+        <button *ngIf="pokemon.moves" (click)="updateUserAction('moves')" mat-stroked-button [disabled]="userAction === 3"><span *ngIf="pokemon.moves.length > 1">Attaques</span><span
                 *ngIf="pokemon.moves.length === 1">Attaque</span></button>
-        <button *ngIf="pokemon.stats" mat-stroked-button (click)="updateUserAction('stats')"><span>Statistiques</span></button>
+        <button *ngIf="pokemon.stats" mat-stroked-button (click)="updateUserAction('stats')" [disabled]="userAction === 4"><span>Statistiques</span></button>
     </mat-card-actions>
     <mat-card-actions *ngIf="context.getDeviceUsed() === 2">
         <button *ngIf="pokemon.abilities" mat-icon-button (click)="updateUserAction('abilities')">

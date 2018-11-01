@@ -1,0 +1,40 @@
+<div *ngIf="moves.length > 0">
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" (swipeleft)="onSwipeLeft($event)" (swiperight)="onSwipeRight($event)">
+    <div fxFlex="100%">
+      <mat-card *ngIf="moves[index]">
+        <mat-card-title>
+          <h3 [class]="moves[index].type">{{ moves[index].getName('fr') }}</h3>
+        </mat-card-title>
+        <mat-card-subtitle>
+          Type: {{ moves[index].type | capitalizeFirst }}
+        </mat-card-subtitle>
+        <mat-card-content>
+          <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="10px" *ngIf="context.getDeviceUsed() === 1">
+            <div fxFlex="60%">
+              <p class="description">{{ moves[index].getDescription('fr') }}</p>
+            </div>
+            <mat-divider [vertical]="true"></mat-divider>
+            <div fxFlex="40%">
+              <span><b><u>Puissance</u></b>: {{ moves[index].power }}</span><br>
+              <span><b><u>Pécision</u></b>: {{ moves[index].accuracy }}</span><br>
+              <span><b><u>PP</u></b>: {{ moves[index].pp }}</span><br>
+              <span><b><u>Priorité</u></b>: {{ moves[index].priority }}</span><br>
+            </div>
+          </div>
+          <div fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="10px" *ngIf="context.getDeviceUsed() === 2">
+            <div fxFlex="60%">
+              <p class="description">{{ moves[index].getDescription('fr') }}</p>
+            </div>
+            <mat-divider [vertical]="false"></mat-divider>
+            <div fxFlex="40%">
+              <span><b><u>Puissance</u></b>: {{ moves[index].power }}</span><br>
+              <span><b><u>Pécision</u></b>: {{ moves[index].accuracy }}</span><br>
+              <span><b><u>PP</u></b>: {{ moves[index].pp }}</span><br>
+              <span><b><u>Priorité</u></b>: {{ moves[index].priority }}</span><br>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,9 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange, Output, EventEmitter } from '@angular/core';
 import { PokemonModel } from 'src/app/_models/pokemon-model';
+import { ContextService } from 'src/app/_services/context.service';
+import { Device } from 'src/app/_models/device';
+import { MatDialog } from '@angular/material';
+import { PokemonDetailsComponent } from '../pokemon-details/pokemon-details.component';
 
 @Component({
   selector: 'app-pokemon-team',
@@ -9,10 +13,11 @@ import { PokemonModel } from 'src/app/_models/pokemon-model';
 export class PokemonTeamComponent implements OnInit, OnChanges {
 
   @Input() private pokemon: PokemonModel;
+  @Output() onSelectedPokemon = new EventEmitter<PokemonModel>();
   private team: PokemonModel[];
   private cols: number;
 
-  constructor() { }
+  constructor(private _context: ContextService, private dialog: MatDialog) { }
 
   ngOnInit() {
     const teamSize: number = 6;
@@ -32,6 +37,12 @@ export class PokemonTeamComponent implements OnInit, OnChanges {
           break;
         }
       }
+    }
+  }
+
+  private pokemonSelected(pokemon: PokemonModel): void {
+    if (this._context.getDeviceUsed() === Device.Tablet) {
+      this.onSelectedPokemon.emit(pokemon);
     }
   }
 

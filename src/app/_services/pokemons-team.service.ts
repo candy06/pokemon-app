@@ -19,5 +19,14 @@ export class PokemonsTeamService {
   getLastAddedPokemon(): PokemonModel {
     return this.lastPokemonAdded;
   }
+
+  isInTeam(pokemon: PokemonModel): boolean {
+    const pokemonName: string = pokemon.getName('fr');
+    let isInTeam: boolean = false;
+    this.team.forEach((elt: PokemonModel) => {
+      if (elt.getName('fr') === pokemonName) isInTeam = true;
+    });
+    return isInTeam;
+  }
   
 }

@@ -65,7 +65,7 @@ export class PokemonsArrayComponent implements OnInit, OnChanges {
     this.loading = true;
     const pokemonEntriesModel: Array<PokemonEntryModel> = this.pokedex.pokemonEntryModels;
     this.pokemonService.getPokemonModelsPromise(pokemonEntriesModel).then(() => {
-      this.pokemons = this.pokemonService.getPokemonModels(25);
+      this.pokemons = this.pokemonService.getPokemonModels(pokemonEntriesModel.length);
       this.loading = false
     });
   }

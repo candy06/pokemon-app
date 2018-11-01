@@ -2,33 +2,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './_routing/app-routing.module';
-import { HomeComponent } from './home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ApplicationHeaderComponent } from './application-header/application-header.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import { PokedexComponent } from './pokedex/pokedex.component';
 import { PokedexService } from './_services/pokedex.service';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatChipsModule} from '@angular/material/chips';
-import { CapitalizeFirstPipe } from './_pipes/capitalize-first.pipe';
+import { CapitalizeFirstPipe } from './_pipes/capitalize-first.pipe'; 
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { DescriptionPipe } from './_pipes/description.pipe';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTableModule} from '@angular/material/table';
-import {MatListModule} from '@angular/material/list';
-import { jqxChartComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxchart';
-import { SpiderChartComponent } from './spider-chart/spider-chart.component';
+import {MatListModule} from '@angular/material/list'; 
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { MatPaginatorModule } from '@angular/material';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { PokemonsComponent } from './pokemons/pokemons.component';
 import { PokemonsVisualizerComponent } from './dashboard/pokemons-visualizer/pokemons-visualizer.component';
 import { PokedexSelectorComponent } from './dashboard/pokemons-visualizer/pokedex-selector/pokedex-selector.component'; 
 import {MatSelectModule} from '@angular/material/select';  
@@ -43,21 +37,17 @@ import { TournamentVisitorsChartComponent } from './dashboard/tournament-visitor
 import { PokemonDetailsComponent } from './dashboard/pokemon-details/pokemon-details.component'; 
 import {MatTabsModule} from '@angular/material/tabs';
 import { PokemonTeamComponent } from './dashboard/pokemon-team/pokemon-team.component';
-import {MatDividerModule} from '@angular/material/divider'; 
+import {MatDividerModule} from '@angular/material/divider';
 import { PokemonAbilitiesDetailsComponent } from './dashboard/pokemon-details/pokemon-abilities-details/pokemon-abilities-details.component';
-import { PokemonStatsDetailsComponent } from './dashboard/pokemon-details/pokemon-stats-details/pokemon-stats-details.component'; 
+import { PokemonStatsDetailsComponent } from './dashboard/pokemon-details/pokemon-stats-details/pokemon-stats-details.component';
+import { PokemonMovesDetailsComponent } from './dashboard/pokemon-details/pokemon-moves-details/pokemon-moves-details.component';
 
 @NgModule({
   declarations: [ 
     AppComponent,
-    HomeComponent,
     ApplicationHeaderComponent,
-    PokedexComponent,
     CapitalizeFirstPipe,
     DescriptionPipe,
-    PokemonsComponent,
-    jqxChartComponent,
-    SpiderChartComponent,
     DashboardComponent,
     PokemonsVisualizerComponent,
     PokedexSelectorComponent,
@@ -67,7 +57,8 @@ import { PokemonStatsDetailsComponent } from './dashboard/pokemon-details/pokemo
     PokemonDetailsComponent,
     PokemonTeamComponent,
     PokemonAbilitiesDetailsComponent,
-    PokemonStatsDetailsComponent
+    PokemonStatsDetailsComponent,
+    PokemonMovesDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +77,7 @@ import { PokemonStatsDetailsComponent } from './dashboard/pokemon-details/pokemo
     MatTableModule,
     MatListModule,
     MatDialogModule,
-    MatButtonToggleModule,
+    MatButtonToggleModule, 
     MatPaginatorModule,
     MatSelectModule,
     MatExpansionModule,
@@ -94,7 +85,7 @@ import { PokemonStatsDetailsComponent } from './dashboard/pokemon-details/pokemo
     MatDividerModule
   ],
   entryComponents: [
-    SpiderChartComponent, PokemonDetailsComponent
+    PokemonDetailsComponent
   ],
   providers: [PokedexService, PokemonService, CommonService, ContextService, SpectatorService],
   bootstrap: [AppComponent]

@@ -81,7 +81,7 @@ export class CommonService {
       // Extract moves
       let moves: string[] = [];
       res.moves.forEach(elt => {
-        moves.push(elt.move.name);
+        moves.push(elt.move.url);
       });
       pokemonModel.moves = moves;
     });
